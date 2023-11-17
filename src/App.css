@@ -118,3 +118,103 @@ img {
   background-color: var(--white-color);
   color: var(--accent-color);
 }
+
+.AddNewTodo form {
+  padding: 1rem 1rem calc(1rem + 40px) 1rem;
+  width: 500px;
+  background-color: var(--white-color);
+  border-radius: 4px;
+}
+
+.AddNewTodo form .text input {
+  padding: 1rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  border: none;
+  font-size: 14px;
+}
+
+.AddNewTodo form .text input:focus {
+  outline: none;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.AddNewTodo form .remind {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.AddNewTodo form p {
+  margin-left: 10px;
+}
+
+.AddNewTodo form .title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.AddNewTodo form .pick-day {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.AddNewTodo form .pick-time {
+  padding: 1.5rem;
+}
+
+.AddNewTodo form .pick-project {
+  padding: 0.5rem;
+}
+
+.AddNewTodo form .pick-project .projects {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem 1rem 0 1rem;
+}
+
+.AddNewTodo form .pick-project .projects .project {
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.AddNewTodo form .pick-project .projects .active {
+  background-color: var(--accent-color);
+  color: var(--white-color);
+}
+
+.AddNewTodo form .cancel {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  cursor: pointer;
+}
+
+.AddNewTodo form .confirm {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.AddNewTodo form .confirm button {
+  width: 100%;
+  height: 45px;
+  background-color: var(--accent-color);
+  color: var(--white-color);
+  font-size: 16px;
+  border: none;
+  border-radius: 4px 4px 0 0 ;
+  cursor: pointer;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  width: 320px!important;
+}
+
+.css-z3c6am-MuiFormControl-root-MuiTextField-root {
+  width: 320px!important;
+}
