@@ -15,7 +15,7 @@ const AddNewTodo = () => {
     <div className='AddNewTodo'>
       <div className='btn'>
         <button onClick={() => setShowModal(true)}>
-          + New Todo
+          + New To do
         </button>
       </div>
       <Modal showModal={showModal} setShowModal={setShowModal}>

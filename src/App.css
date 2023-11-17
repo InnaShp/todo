@@ -7,6 +7,7 @@
   --modal-bg-color: rgba(0, 0, 0, 0.8);
   --delete-bg-color: #ffacac;
   --edit-bg-color: #acffac;
+  --cancel-bg-color: #bebebb
 }
 
 * {
@@ -48,6 +49,7 @@ img {
   width: 100vw;
   height: 100vh;
   background: var(--modal-bg-color);
+  z-index: 200;
 }
 
 .Modal .container {
@@ -334,4 +336,58 @@ img {
 .Project .btns .edit-delete span.delete:hover {
   background-color: var(--delete-bg-color);
 }
+
+.AddNewProject .add-button span {
+  margin-right: 5px;
+}
+
+.ProjectForm {
+  background-color: var(--white-color);
+  padding: 1rem;
+  border-radius: 4px;
+  position: relative;
+  padding-bottom: 40px;
+  width: 300px;
+}
+
+.ProjectForm input {
+  width: 100%;
+  height: 40px;
+  margin: 15px 0;
+  border: none;
+  font-size: 16px;
+}
+
+.ProjectForm input:focus {
+  outline: none;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.ProjectForm button {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  width: 50%;
+  border: none;
+  color: var(--white-color);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.ProjectForm button.cancel {
+  left: 0;
+  background-color: var(--cancel-bg-color);
+}
+
+.ProjectForm button.confirm {
+  right: 0;
+  background-color: var(--accent-color);
+}
+
+.ProjectForm button:hover {
+  filter: brightness(1.1);
+}
+
 
