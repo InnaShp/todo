@@ -40,6 +40,7 @@ img {
   background-image: url("./images/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 .Modal {
@@ -223,30 +224,34 @@ img {
   width: 320px !important;
 }
 
-.Calendar, .Projects {
+.Calendar,
+.Projects {
   padding: 1rem;
   border-bottom: 1px solid var(--light-border-color);
 }
 
-.Calendar .header, .Projects .header {
+.Calendar .header,
+.Projects .header {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
 }
 
-.Calendar .header .title, .Projects .header .title {
+.Calendar .header .title,
+.Projects .header .title {
   display: flex;
   align-items: center;
   flex: 1;
 }
 
-.Calendar .header .title p, .Projects .header .title p {
+.Calendar .header .title p,
+.Projects .header .title p {
   margin-left: 5px;
   font-size: 16px;
   font-weight: bold;
 }
 
-.Calendar .header .btns span, 
+.Calendar .header .btns span,
 .Projects .header .btns span,
 .Project .btns .edit-delete span {
   border-radius: 50%;
@@ -259,13 +264,14 @@ img {
   transition-duration: 0.4s;
 }
 
-.Calendar .header .btns span:hover, 
+.Calendar .header .btns span:hover,
 .Projects .header .btns span:hover,
 .Project .btns .edit-delete span:hover {
   background-color: var(--light-border-color);
 }
 
-.Calendar .items, .Projects .items {
+.Calendar .items,
+.Projects .items {
   padding: 1rem;
 }
 
@@ -275,7 +281,8 @@ img {
   cursor: pointer;
 }
 
-.Calendar .items .item:hover, .Project .name:hover {
+.Calendar .items .item:hover,
+.Project .name:hover {
   text-decoration: underline;
 }
 
@@ -355,7 +362,7 @@ img {
   height: 40px;
   margin: 15px 0;
   border: none;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .ProjectForm input:focus {
@@ -390,4 +397,69 @@ img {
   filter: brightness(1.1);
 }
 
+.Todos {
+  width: 450px;
+  height: 80%;
+  background-color: var(--white-color);
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  border-radius: 4px;
+  opacity: 0.9;
+  padding: 0 0.5rem 0.5rem 0.5rem;
+}
 
+.Todos .selected-project {
+  margin: 1rem 0;
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--light-border-color);
+}
+
+.Todos .todos {
+  overflow-y: auto;
+}
+
+.Todo {
+  padding: 0.5rem 1rem;
+}
+
+.Todo .todo-container {
+  display: flex;
+  align-items: center;
+}
+
+.Todo .todo-container span {
+  cursor: pointer;
+}
+
+.Todo .todo-container .text {
+  position: relative;
+  flex: 1;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.Todo .todo-container .text span {
+  font-size: 0.8rem;
+  color: #bebebe;
+}
+
+.Todo .todo-container .text .line {
+  height: 1px;
+  background: #bebebe;
+  position: absolute;
+  top: 25%;
+  width: 0;
+  transition: width 250ms ease-in-out;
+}
+
+.Todo .todo-container .text .line-through {
+  width: 100%;
+}
+
+.Todo .todo-container .add-to-next-day {
+  margin-right: 10px;
+}
