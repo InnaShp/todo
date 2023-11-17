@@ -5,6 +5,8 @@
   --white-color: #fff;
   --light-border-color: #ebebeb;
   --modal-bg-color: rgba(0, 0, 0, 0.8);
+  --delete-bg-color: #ffacac;
+  --edit-bg-color: #acffac;
 }
 
 * {
@@ -219,30 +221,32 @@ img {
   width: 320px !important;
 }
 
-.Calendar {
+.Calendar, .Projects {
   padding: 1rem;
   border-bottom: 1px solid var(--light-border-color);
 }
 
-.Calendar .header {
+.Calendar .header, .Projects .header {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
 }
 
-.Calendar .header .title {
+.Calendar .header .title, .Projects .header .title {
   display: flex;
   align-items: center;
   flex: 1;
 }
 
-.Calendar .header .title p {
+.Calendar .header .title p, .Projects .header .title p {
   margin-left: 5px;
   font-size: 16px;
   font-weight: bold;
 }
 
-.Calendar .header .btns span {
+.Calendar .header .btns span, 
+.Projects .header .btns span,
+.Project .btns .edit-delete span {
   border-radius: 50%;
   cursor: pointer;
   width: 25px;
@@ -253,11 +257,13 @@ img {
   transition-duration: 0.4s;
 }
 
-.Calendar .header .btns span:hover {
+.Calendar .header .btns span:hover, 
+.Projects .header .btns span:hover,
+.Project .btns .edit-delete span:hover {
   background-color: var(--light-border-color);
 }
 
-.Calendar .items {
+.Calendar .items, .Projects .items {
   padding: 1rem;
 }
 
@@ -267,6 +273,65 @@ img {
   cursor: pointer;
 }
 
-.Calendar .items .item:hover {
+.Calendar .items .item:hover, .Project .name:hover {
   text-decoration: underline;
 }
+
+.Projects .header .btns {
+  display: flex;
+  align-items: center;
+}
+
+.Projects .header .btns span.edit {
+  margin-right: 5px;
+}
+
+.Project {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 14px;
+  position: relative;
+}
+
+.Project .name {
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.Project .btns {
+  display: flex;
+  align-items: center;
+}
+
+.Project .btns .total-todos {
+  position: absolute;
+  right: 0;
+  background-color: var(--light-border-color);
+  width: 25px;
+  height: 25px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.Project .btns .edit-delete {
+  position: absolute;
+  right: 0;
+  display: flex;
+}
+
+.Project .btns .edit-delete span {
+  transition: background 300ms ease-in-out;
+}
+
+.Project .btns .edit-delete span.edit:hover {
+  background-color: var(--edit-bg-color);
+}
+
+.Project .btns .edit-delete span.delete:hover {
+  background-color: var(--delete-bg-color);
+}
+
