@@ -207,14 +207,66 @@ img {
   color: var(--white-color);
   font-size: 16px;
   border: none;
-  border-radius: 4px 4px 0 0 ;
+  border-radius: 4px 4px 0 0;
   cursor: pointer;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  width: 320px!important;
+  width: 320px !important;
 }
 
 .css-z3c6am-MuiFormControl-root-MuiTextField-root {
-  width: 320px!important;
+  width: 320px !important;
+}
+
+.Calendar {
+  padding: 1rem;
+  border-bottom: 1px solid var(--light-border-color);
+}
+
+.Calendar .header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.Calendar .header .title {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.Calendar .header .title p {
+  margin-left: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.Calendar .header .btns span {
+  border-radius: 50%;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: 0.4s;
+}
+
+.Calendar .header .btns span:hover {
+  background-color: var(--light-border-color);
+}
+
+.Calendar .items {
+  padding: 1rem;
+}
+
+.Calendar .items .item {
+  padding: 0.5rem;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.Calendar .items .item:hover {
+  text-decoration: underline;
 }
