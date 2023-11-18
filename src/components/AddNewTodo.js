@@ -10,13 +10,13 @@ import randomColor from 'randomcolor';
 
 
 const AddNewTodo = () => {
-  const { projects, selectedProject } = useContext(TodoContext);
+  const { projects, selectedProject } = useContext(TodoContext)
 
-  const [showModal, setShowModal] = useState(false);
-  const [text, setText] = useState('');
-  const [day, setDay] = useState(new Date());
-  const [time, setTime] = useState(new Date());
-  const [todoProject, setTodoProject] = useState(selectedProject);
+  const [showModal, setShowModal] = useState(false)
+  const [text, setText] = useState('')
+  const [day, setDay] = useState(new Date())
+  const [time, setTime] = useState(new Date())
+  const [todoProject, setTodoProject] = useState(selectedProject)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,6 +37,11 @@ const AddNewTodo = () => {
       setTime(new Date());
     }
   }
+
+  useEffect(() => {
+    setTodoProject(selectedProject)
+  }, [selectedProject])
+
   return (
     <div className='AddNewTodo'>
       <div className='btn'>

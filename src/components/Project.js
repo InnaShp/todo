@@ -5,9 +5,9 @@ import Modal from './Modal';
 import { TodoContext } from '../context'
 
 const Project = ({ project, edit }) => {
-  const { setSelectedProject } = useContext(TodoContext);
+  const { setSelectedProject } = useContext(TodoContext)
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <div className='Project'>
@@ -17,22 +17,25 @@ const Project = ({ project, edit }) => {
       >
         {project.name}
       </div>
-      <div className='btns'>
+      <div className="btns">
         {
           edit ?
-            <div className='edit-delete'>
-              <span className='edit' onClick={() => setShowModal(true)}>
-                <Pencil size='13' />
+            <div className="edit-delete">
+              <span
+                className="edit"
+                onClick={() => setShowModal(true)}
+              >
+                <Pencil size="13" />
               </span>
-              <span className='delete'>
-                <XCircle size='13' />
+              <span className="delete">
+                <XCircle size="13" />
               </span>
             </div>
             :
-            project.numOfTodos === 0
-              ? ''
+            project.numOfTodos === 0 ?
+              ""
               :
-              <div className='total-todos'>
+              <div className="total-todos">
                 {project.numOfTodos}
               </div>
         }

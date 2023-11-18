@@ -12,28 +12,32 @@ const Projects = () => {
 
   return (
     <div className='Projects'>
-      <div className='header'>
-        <div className='title'>
-          <Palette size='18' />
+      <div className="header">
+        <div className="title">
+          <Palette size="18" />
           <p>Projects</p>
         </div>
-        <div className='btns'>
+        <div className="btns">
           {
             showMenu && projects.length > 0 &&
             <span className='edit' onClick={() => setEdit(edit => !edit)}>
-              <PencilFill size='15' color={pencilColor} />
+              <PencilFill size="15" color={pencilColor} />
             </span>
           }
           <AddNewProject />
           <span className='arrow'>
-            <CaretUp size='20' />
+            <CaretUp size="20" />
           </span>
         </div>
       </div>
-      <div className='items'>
+      <div className="items">
         {
           projects.map(project =>
-            <Project project={project} key={project.id} edit={edit} />
+            <Project
+              project={project}
+              key={project.id}
+              edit={edit}
+            />
           )
         }
       </div>
