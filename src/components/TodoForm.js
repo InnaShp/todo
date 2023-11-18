@@ -11,6 +11,7 @@ const TodoForm = ({
   text, setText,
   day, setDay,
   time, setTime,
+  todoProject, setTodoProject,
   projects,
   showButtons = false,
   setShowModal = false
@@ -63,7 +64,11 @@ const TodoForm = ({
           <div className='projects'>
             {
               projects.map(project =>
-                <div className='project' key={project.id}>
+                <div 
+                  className={`project ${todoProject === project.name ? 'active' : ''}`} 
+                  key={project.id}
+                  onClick={() => setTodoProject(project.name)}
+                >
                   {project.name}
                 </div>
               )
