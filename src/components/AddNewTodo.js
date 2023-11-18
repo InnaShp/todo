@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Modal from './Modal';
 import TodoForm from './TodoForm';
+import { TodoContext } from '../context';
 
 
 const AddNewTodo = () => {
+
+  const { selectedProject } = useContext(TodoContext);
   const [showModal, setShowModal] = useState(false);
   const [text, setText] = useState('');
   const [day, setDay] = useState(new Date());
   const [time, setTime] = useState(new Date());
+  const [todoProject, setTodoProject] = useState(selectedProject);
+
+  useEffect( () => {
+    setTodoProject(selectedProject)
+  }, [selectedProject]);
 
   function handleSubmit(e) {
   }
@@ -35,6 +43,8 @@ const AddNewTodo = () => {
           setDay={setDay}
           time={time}
           setTime={setTime}
+          todoProject={todoProject}
+          setTodoProject={setTodoProject}
           projects={projects}
           showButtons={true}
           setShowModal={setShowModal}
