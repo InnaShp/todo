@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import firebaseDB from '../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, onSnapshot } from 'firebase/firestore';
 
 export function useTodos() {
   const [todos, setTodos] = useState([]);
@@ -20,9 +20,11 @@ export function useTodos() {
       }
     };
 
-    const unsubscribe = fetchData();
-    return unsubscribe;
-  }, []); 
+    const unsubscribe = onSnapshot(collection(firebaseDB, 'todos'), () => {
+      fetchData();
+    });
+    return () => unsubscribe();
+  }, []);
 
   return todos;
 }
@@ -53,8 +55,10 @@ export function useProjects(todos) {
       }
     };
 
-    const unsubscribe = fetchData();
-    return unsubscribe;
+    const unsubscribe = onSnapshot(collection(firebaseDB, 'projects'), () => {
+      fetchData();
+    });
+    return () => unsubscribe();
   }, [todos]);
 
   return projects;
