@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ArrowClockwise, CheckCircleFill, Circle, Trash } from 'react-bootstrap-icons';
 import firebaseDB from '../firebase';
 import { doc, deleteDoc, updateDoc, collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import moment from 'moment';
+import { TodoContext } from '../context';
 
 const Todo = ({ todo }) => {
   const [hover, setHover] = useState(false);
+  const { selectedTodo, setSelectedTodo } = useContext(TodoContext);
 
   async function deleteTodo(todo) {
     try {
       await deleteDoc(doc(firebaseDB, "todos", todo.id));
     } catch (error) {
       console.error("Error deleting todo:", error);
+    }
+  }
+
+  function handleDelete(todo) {
+    deleteTodo(todo);
+    if (todo === selectedTodo) {
+      setSelectedTodo(undefined);
     }
   }
 
@@ -34,14 +43,16 @@ const Todo = ({ todo }) => {
       date: nextDayDate.format('MM/DD/YYYY'),
       day: nextDayDate.format('d'),
     }
+
     delete repeatedTodo.id;
-    const todosRef = collection(firebaseDB, 'todos');
-    const existingTodoQuery = query(
-      todosRef,
-      where('projectName', '==', repeatedTodo.projectName),
-      where('date', '==', repeatedTodo.date)
-    );
+
     try {
+      const todosRef = collection(firebaseDB, 'todos');
+      const existingTodoQuery = query(
+        todosRef,
+        where('projectName', '==', repeatedTodo.projectName),
+        where('date', '==', repeatedTodo.date)
+      );
       const existingTodosSnapshot = await getDocs(existingTodoQuery);
 
       if (existingTodosSnapshot.empty) {
@@ -74,7 +85,10 @@ const Todo = ({ todo }) => {
               </span>
           }
         </div>
-        <div className='text'>
+        <div
+          className='text'
+          onClick={() => setSelectedTodo(todo)}
+        >
           <p style={{ color: todo.checked ? '#bebebe' : '#000000' }}>{todo.text}</p>
           <span>{todo.time} - {todo.projectName}</span>
           <div className={`line ${todo.checked ? 'line-through' : ''}`}></div>
@@ -90,7 +104,7 @@ const Todo = ({ todo }) => {
             </span>
           }
         </div>
-        <div className='delete-todo' onClick={() => deleteTodo(todo)}>
+        <div className='delete-todo' onClick={() => handleDelete(todo)}>
           {
             (todo.checked || hover) &&
             <span>

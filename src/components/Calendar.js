@@ -4,7 +4,7 @@ import { calendarItems } from '../constants';
 import { TodoContext } from '../context'
 
 const Calendar = () => {
-  const {setSelectedProject} = useContext(TodoContext);
+  const { setSelectedProject } = useContext(TodoContext);
 
   return (
     <div className='Calendar'>
