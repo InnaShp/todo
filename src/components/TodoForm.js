@@ -4,7 +4,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { MobileDatePicker, MobileTimePicker } from '@mui/x-date-pickers';
 
-
 const TodoForm = ({
   handleSubmit,
   heading = false,
@@ -41,20 +40,14 @@ const TodoForm = ({
             <CalendarDay />
             <p>Choose a day</p>
           </div>
-          <MobileDatePicker
-            value={day}
-            onChange={day => setDay(day)}
-          />
+          <MobileDatePicker value={day} onChange={day => setDay(day)} />
         </div>
         <div className='pick-time'>
           <div className='title'>
             <Clock />
             <p>Choose time</p>
           </div>
-          <MobileTimePicker
-            value={time}
-            onChange={time => setTime(time)}
-          />
+          <MobileTimePicker value={time} onChange={time => setTime(time)} />
         </div>
         <div className='pick-project'>
           <div className='title'>
@@ -74,7 +67,7 @@ const TodoForm = ({
                   </div>
                 )
                 :
-                <div style={{color:'#ff0000'}}>Please add a project before proceeding</div>
+                <div style={{ color: '#ff0000' }}>Please add a project before proceeding</div>
             }
           </div>
         </div>

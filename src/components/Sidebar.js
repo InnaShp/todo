@@ -7,7 +7,6 @@ const Sidebar = ({ children }) => {
 
   useEffect(() => {
     document.addEventListener('click', handleClick);
-
     return () => document.removeEventListener('click', handleClick);
   });
 
@@ -18,10 +17,7 @@ const Sidebar = ({ children }) => {
   }
 
   return (
-    <div
-      className='Sidebar'
-      ref={sidebarRef}
-    >
+    <div className='Sidebar' ref={sidebarRef}>
       {children}
     </div>
   );

@@ -13,9 +13,6 @@ const EditTodo = () => {
 
   const { selectedTodo, projects } = useContext(TodoContext);
 
-  function handleSubmit(e) {
-  }
-
   useEffect(() => {
     if (selectedTodo) {
       setText(selectedTodo.text);
@@ -41,7 +38,6 @@ const EditTodo = () => {
     } catch (error) {
       console.log('Error editing todo:', error);
     }
-
   }, [text, day, time, todoProject, selectedTodo]);
 
   return (
@@ -54,7 +50,6 @@ const EditTodo = () => {
           </div>
           <div className='container'>
             <TodoForm
-              handleSubmit={handleSubmit}
               text={text}
               setText={setText}
               day={day}

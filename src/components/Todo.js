@@ -20,9 +20,7 @@ const Todo = ({ todo }) => {
 
   function handleDelete(todo) {
     deleteTodo(todo);
-    if (todo === selectedTodo) {
-      setSelectedTodo(undefined);
-    }
+    if (todo === selectedTodo) setSelectedTodo(undefined);
   }
 
   async function checkTodo(todo) {
@@ -44,9 +42,7 @@ const Todo = ({ todo }) => {
       date: nextDayDate.format('MM/DD/YYYY'),
       day: nextDayDate.format('d'),
     }
-
     delete repeatedTodo.id;
-
     try {
       const todosRef = collection(firebaseDB, 'todos');
       const existingTodoQuery = query(
@@ -55,7 +51,6 @@ const Todo = ({ todo }) => {
         where('date', '==', repeatedTodo.date)
       );
       const existingTodosSnapshot = await getDocs(existingTodoQuery);
-
       if (existingTodosSnapshot.empty) {
         await addDoc(todosRef, repeatedTodo);
       }
@@ -82,10 +77,7 @@ const Todo = ({ todo }) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <div
-          className='check-todo'
-          onClick={() => checkTodo(todo)}
-        >
+        <div className='check-todo' onClick={() => checkTodo(todo)}>
           {
             checkTransitions((props, checked) =>
               checked ?
@@ -99,18 +91,12 @@ const Todo = ({ todo }) => {
             )
           }
         </div>
-        <div
-          className='text'
-          onClick={() => setSelectedTodo(todo)}
-        >
+        <div className='text' onClick={() => setSelectedTodo(todo)}>
           <p style={{ color: todo.checked ? '#bebebe' : '#000000' }}>{todo.text}</p>
           <span>{todo.time} - {todo.projectName}</span>
           <div className={`line ${todo.checked ? 'line-through' : ''}`}></div>
         </div>
-        <div
-          className='add-to-next-day'
-          onClick={() => repeatTodoNextDay(todo)}
-        >
+        <div className='add-to-next-day' onClick={() => repeatTodoNextDay(todo)}>
           {
             todo.checked &&
             <span>

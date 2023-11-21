@@ -10,7 +10,7 @@ function TodoContextProvider({ children }) {
 
   const todos = useTodos();
   const projects = useProjects();
-  const projectWithStats = useProjectWithStats(projects, todos)
+  const projectWithStats = useProjectWithStats(projects, todos);
   const filteredTodos = useFilterTodos(todos, selectedProject);
 
   return (

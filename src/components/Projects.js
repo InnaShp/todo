@@ -19,8 +19,7 @@ const Projects = () => {
   const menuAnimation = useSpring({
     display: showMenu ? 'block' : 'none',
     lineHeight: showMenu ? 1.2 : 0
-  })
-
+  });
 
   return (
     <div className='Projects'>
@@ -49,11 +48,7 @@ const Projects = () => {
       <animated.div className="items" style={menuAnimation}>
         {
           projects.map(project =>
-            <Project
-              project={project}
-              key={project.id}
-              edit={edit}
-            />
+            <Project project={project} key={project.id} edit={edit} />
           )
         }
       </animated.div>

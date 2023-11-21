@@ -14,20 +14,15 @@ const Project = ({ project, edit }) => {
   async function deleteProject(project) {
     try {
       await deleteDoc(doc(firebaseDB, "projects", project.id));
-
       const todosQuery = query(
         collection(firebaseDB, "todos"),
         where('projectName', '==', project.name)
       );
       const todosSnapshot = await getDocs(todosQuery);
-
       for (const doc of todosSnapshot.docs) {
         await deleteDoc(doc.ref);
       }
-
-      if (selectedProject === project.name) {
-        setSelectedProject(defaultProject);
-      }
+      if (selectedProject === project.name) setSelectedProject(defaultProject);
     } catch (error) {
       console.error("Error deleting project:", error);
     }

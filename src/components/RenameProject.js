@@ -11,29 +11,22 @@ const RenameProject = ({ project, setShowModal }) => {
   async function renameProjectName(project, newProjectName) {
     const projectsRef = collection(firebaseDB, 'projects');
     const todosRef = collection(firebaseDB, 'todos');
-  
     const { name: oldProjectName } = project;
-  
     try {
       const projectSnapshot = await getDocs(query(projectsRef, where('name', '==', newProjectName)));
-      
       if (!projectSnapshot.empty) {
         alert('Project with the same name already exists!');
       } else {
         await updateDoc(doc(projectsRef, project.id), {
           name: newProjectName
         });
-  
         const todosSnapshot = await getDocs(query(todosRef, where('projectName', '==', oldProjectName)));
         for (const todoDoc of todosSnapshot.docs) {
           await updateDoc(todoDoc.ref, {
             projectName: newProjectName
           });
         }
-  
-        if (selectedProject === oldProjectName) {
-          setSelectedProject(newProjectName);
-        }
+        if (selectedProject === oldProjectName) setSelectedProject(newProjectName);
       }
     } catch (error) {
       console.error('Error updating project:', error);
@@ -45,6 +38,7 @@ const RenameProject = ({ project, setShowModal }) => {
     renameProjectName(project, newProjectName);
     setShowModal(false);
   }
+
   return (
     <div className='RenameProject'>
       <ProjectForm

@@ -16,7 +16,7 @@ const Calendar = () => {
   const menuAnimation = useSpring({
     display: showMenu ? 'block' : 'none',
     lineHeight: showMenu ? 1.2 : 0
-  })
+  });
 
   return (
     <div className='Calendar'>
