@@ -4,6 +4,7 @@ import firebaseDB from '../firebase';
 import { doc, deleteDoc, updateDoc, collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import moment from 'moment';
 import { TodoContext } from '../context';
+import { animated, useSpring, useTransition } from 'react-spring';
 
 const Todo = ({ todo }) => {
   const [hover, setHover] = useState(false);
@@ -63,8 +64,19 @@ const Todo = ({ todo }) => {
     }
   }
 
+  const fadeIn = useSpring({
+    from: { marginTop: '-12px', opacity: 0 },
+    to: { marginTop: '0px', opacity: 1 }
+  });
+
+  const checkTransitions = useTransition(todo.checked, {
+    from: { position: 'absolute', transform: 'scale(0)' },
+    enter: { transform: 'scale(1)' },
+    leave: { transform: 'scale(0)' }
+  });
+
   return (
-    <div className='Todo'>
+    <animated.div className='Todo' style={fadeIn}>
       <div
         className='todo-container'
         onMouseEnter={() => setHover(true)}
@@ -75,14 +87,16 @@ const Todo = ({ todo }) => {
           onClick={() => checkTodo(todo)}
         >
           {
-            todo.checked ?
-              <span className='checked'>
-                <CheckCircleFill color='#bebebe' />
-              </span>
-              :
-              <span className='unchecked'>
-                <Circle color={todo.color} />
-              </span>
+            checkTransitions((props, checked) =>
+              checked ?
+                <animated.span style={props} className='checked'>
+                  <CheckCircleFill color='#bebebe' />
+                </animated.span>
+                :
+                <animated.span style={props} className='unchecked'>
+                  <Circle color={todo.color} />
+                </animated.span>
+            )
           }
         </div>
         <div
@@ -113,7 +127,7 @@ const Todo = ({ todo }) => {
           }
         </div>
       </div>
-    </div>
+    </animated.div>
   )
 }
 

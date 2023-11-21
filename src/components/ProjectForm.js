@@ -13,13 +13,13 @@ const ProjectForm = ({ handleSubmit, heading, value, setValue, setShowModal, con
       />
       <button 
         className='cancel' 
-        role='button' 
         onClick={() => setShowModal(false)}
       >
         cancel
       </button>
       <button 
-        className='confirm' type='submit'
+        className='confirm' 
+        type='submit'
       >
         {confirmButtonText}
       </button>

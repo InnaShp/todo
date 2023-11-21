@@ -3,12 +3,24 @@ import AddNewProject from './AddNewProjects';
 import Project from './Project';
 import { CaretUp, Palette, PencilFill } from 'react-bootstrap-icons';
 import { TodoContext } from '../context';
+import { useSpring, animated } from 'react-spring';
 
 const Projects = () => {
   const [showMenu, setShowMenu] = useState(true);
   const [edit, setEdit] = useState(false);
   const pencilColor = edit ? '#1EC94C' : '#00000';
   const { projects } = useContext(TodoContext);
+
+  const spin = useSpring({
+    transform: showMenu ? 'rotate(0deg)' : 'rotate(180deg)',
+    config: { friction: 12 }
+  });
+
+  const menuAnimation = useSpring({
+    display: showMenu ? 'block' : 'none',
+    lineHeight: showMenu ? 1.2 : 0
+  })
+
 
   return (
     <div className='Projects'>
@@ -25,12 +37,16 @@ const Projects = () => {
             </span>
           }
           <AddNewProject />
-          <span className='arrow'>
+          <animated.span
+            className='arrow'
+            style={spin}
+            onClick={() => setShowMenu(!showMenu)}
+          >
             <CaretUp size="20" />
-          </span>
+          </animated.span>
         </div>
       </div>
-      <div className="items">
+      <animated.div className="items" style={menuAnimation}>
         {
           projects.map(project =>
             <Project
@@ -40,7 +56,7 @@ const Projects = () => {
             />
           )
         }
-      </div>
+      </animated.div>
     </div>
   )
 }

@@ -42,7 +42,7 @@ const EditTodo = () => {
       console.log('Error editing todo:', error);
     }
 
-  }, [text, day, time, todoProject]);
+  }, [text, day, time, todoProject, selectedTodo]);
 
   return (
     <div>

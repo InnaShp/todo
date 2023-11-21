@@ -169,13 +169,13 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition-duration: 0.4s;
 }
 
 .Calendar .header .btns span:hover,
 .Projects .header .btns span:hover,
 .Project .btns .edit-delete span:hover {
   background-color: var(--light-border-color);
+  transition: background 300ms easy-in-out;
 }
 
 .Calendar .items,
@@ -340,6 +340,13 @@ img {
   align-items: center;
 }
 
+.Todo .todo-container .check-todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+}
+
 .Todo .todo-container span {
   cursor: pointer;
 }
@@ -369,7 +376,7 @@ img {
   width: 100%;
 }
 
-.Todo .todo-container .add-to-next-day {
+.Todo -container .add-to-next-day {
   margin-right: 10px;
 }
 
