@@ -60,21 +60,15 @@ export function useFilterTodos(todos, selectedProject) {
 export function useProjects(todos) {
   const [projects, setProjects] = useState([]);
 
-  function calculateNumOfTodos(projectName, todos) {
-    return todos.filter(todo => todo.projectName === projectName).length;
-  }
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const projectsCol = collection(firebaseDB, 'projects');
         const projectsSnapshot = await getDocs(projectsCol);
         const data = projectsSnapshot.docs.map(doc => {
-          const projectName = doc.data().name;
           return {
             id: doc.id,
-            name: projectName,
-            numOfTodos: calculateNumOfTodos(projectName, todos)
+            name: doc.data().name
           };
         });
         setProjects(data);
@@ -90,4 +84,19 @@ export function useProjects(todos) {
   }, [todos]);
 
   return projects;
+}
+
+export function useProjectWithStats(projects, todos) {
+  const [projectWithStats, setProjectWithStats] = useState([]);
+
+  useEffect(() => {
+    const data = projects.map((project) => {
+      return {
+        numOfTodos: todos.filter(todo => todo.projectName === project.name && !todo.checked).length,
+        ...project
+      }
+    })
+    setProjectWithStats(data);
+  }, [projects, todos]);
+  return projectWithStats;
 }
